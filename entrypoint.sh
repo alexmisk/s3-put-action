@@ -15,4 +15,4 @@ secret_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.s3cfg
 
 echo "Uploading"
 
-s3cmd put ${LOCAL_FILE} s3://${AWS_BUCKET}/${REMOTE_FILE} $*
+s3cmd put ${LOCAL_FILE} s3://${AWS_BUCKET}/ $*
