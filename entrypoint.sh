@@ -7,16 +7,12 @@ echo "[default]
 check_ssl_certificate = True
 check_ssl_hostname = True
 guess_mime_type = True
-host_base = ${AWS_ENDPOINT}
+bucket_location = ru-central1
+host_base = storage.yandexcloud.net
+host_bucket = %(bucket)s.storage.yandexcloud.net
 access_key = ${AWS_ACCESS_KEY_ID}
 secret_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.s3cfg
 
-echo "Uploading file to ${LOCAL_FILE} to ${REMOTE_FILE}"
-
-if [[ ! -z "$INCLUDE_SHA256" ]]; then
-    echo "Generating SHA256"
-    cat ${LOCAL_FILE} | sha256sum | awk '{printf $1}' > ${LOCAL_FILE}.sha256
-    s3cmd put ${LOCAL_FILE}.sha256 s3://${AWS_BUCKET}/${REMOTE_FILE}.sha256 $*
-fi
+echo "Uploading"
 
 s3cmd put ${LOCAL_FILE} s3://${AWS_BUCKET}/${REMOTE_FILE} $*
