@@ -10,9 +10,9 @@ guess_mime_type = True
 bucket_location = ru-central1
 host_base = storage.yandexcloud.net
 host_bucket = %(bucket)s.storage.yandexcloud.net
-access_key = ${AWS_ACCESS_KEY_ID}
-secret_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.s3cfg
+access_key = ${YANDEX_ACCESS_KEY_ID}
+secret_key = ${YANDEX_SECRET_ACCESS_KEY}" > ~/.s3cfg
 
 echo "Uploading"
 
-s3cmd put ${LOCAL_FILE} s3://${AWS_BUCKET}/ $*
+s3cmd put ${LOCAL_FILE} s3://${YANDEX_BUCKET}/ $*
